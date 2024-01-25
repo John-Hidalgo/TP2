@@ -31,13 +31,13 @@ function ChangezStatusCompacteur()
 }
 function ConsultezCannettesComp()
 {
-    window.location.href = "http://192.168.1.17/ConsultezCanettes";
+    window.location.href = "http://192.168.4.1/ConsultezCanettes";
 }
 function ConsultezClientsRecu()
 {
-    window.location.href = "http://192.168.1.17/ConsultezClientMontantRecu";
+    window.location.href = "http://192.168.4.1/ConsultezClientMontantRecu";
 }
 function ConsultezAdresse()
 {
-    window.location.href = "http://192.168.1.17/ConsultezAdresse";
+    window.location.href = "http://192.168.4.1/ConsultezAdresse";
 }

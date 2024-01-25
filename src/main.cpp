@@ -53,7 +53,7 @@ void setup()
 
 void loop()
 {
-  //serv->Ecoutes();
-  compacteur->Geres();
+  serv->Ecoutes();
+  //compacteur->Geres();
 }
 

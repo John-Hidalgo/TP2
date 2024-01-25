@@ -3,7 +3,6 @@
 Bouton::Bouton(const int pin, Action<>* p_action) 
 : m_buttonPin(pin), m_action(p_action), m_dernierEtat(false), m_etatStable(false)
 {}
-
 bool Bouton::DebounceAppuyee(int etatLu) 
 {
     (etatLu != m_dernierEtat) ? (m_tempsDernierEtatChanger = millis()) : 0;
@@ -11,18 +10,10 @@ bool Bouton::DebounceAppuyee(int etatLu)
         ? ((m_etatStable = etatLu) == LOW ? true : false)
         : false;
 }
-
 void Bouton::Ecoutes() 
 {
-    // int etatLu = digitalRead(m_buttonPin);
-    // DebounceAppuyee(etatLu) ? m_action->Executez() : void();
-    // m_dernierEtat = etatLu;
-    //Serial.println("button is listening");
     int etatLu = digitalRead(m_buttonPin);
-    if(DebounceAppuyee(etatLu))
-    {
-        Serial.println("pressed");
-    } 
+    DebounceAppuyee(etatLu) ? m_action->Executez() : void();
     m_dernierEtat = etatLu;
 }
 void Bouton::AffectezAction(Action<>* p_action) 

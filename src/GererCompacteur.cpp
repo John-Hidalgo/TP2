@@ -98,59 +98,56 @@ void GererCompacteur::TerminezTransaction()
     }   
 }
 
-// void GererCompacteur::Geres()
-// {
-//     m_boutonOperateur->Ecoutes();
-//     m_boutonClients->Ecoutes();
-//     unsigned long tempsCourant = millis();
-//     if(DepotCompacteur::Lire<String>("status") == "actif")
-//     {
-//         m_senseur->Ecoutez2();
-//         m_transaction->AfficherTransaction(m_digits);
-//     }
-//     else if (tempsCourant - m_dernierTempsAfficher >= 1000)
-//     {
-//         m_lcd->effacer().afficher(DepotCompacteur::Lire<String>("status"));
-//         m_digits->afficher(0,0,0,0);
-//         m_dernierTempsAfficher = millis();
-//     }
-// }
-
 void GererCompacteur::Geres()
 {
     m_boutonOperateur->Ecoutes();
     m_boutonClients->Ecoutes();
     unsigned long tempsCourant = millis();
-    if (DepotCompacteur::Lire<String>("status") == "actif")
+    if(DepotCompacteur::Lire<String>("status") == "actif")
     {
-        m_senseur->Ecoutez2();
-        if (tempsCourant - m_dernierTempsAfficher >= 1000)
-        {
-            if (this->m_afficherRecu) 
-            {
-                //Serial.println(this->m_transaction->ObtiensRecu());
-                m_digits->AffichezFloat(this->m_transaction->ObtiensRecu());
-            } 
-            else 
-            {
-                //this->m_disgits2->showNumberDec(m_transaction->ObtiensCanettes());
-                //Serial.println(this->m_transaction->ObtiensCanettes());
-                m_digits->afficherDecimal(this->m_transaction->ObtiensCanettes());
-            }
-            m_afficherRecu = !m_afficherRecu;
-            m_dernierTempsAfficher = millis();
-        }
+        m_senseur->Ecoutez();
+        m_transaction->AfficherTransaction(m_digits);
     }
-
-    // if (tempsCourant - m_dernierTempsAfficher >= 1000)
-    // {
-    //     m_lcd->effacer().afficher(DepotCompacteur::Lire<String>("status"));
-    //     m_digits->afficher(0, 0, 0, 0);
-    //     m_dernierTempsAfficher = millis();
-    // }
-
-
+    else if (tempsCourant - m_dernierTempsAfficher >= 1000)
+    {
+        m_lcd->effacer().afficher(DepotCompacteur::Lire<String>("status"));
+        m_digits->afficher(0,0,0,0);
+        m_dernierTempsAfficher = millis();
+    }
 }
+
+// void GererCompacteur::Geres()
+// {
+//     m_boutonOperateur->Ecoutes();
+//     m_boutonClients->Ecoutes();
+//     unsigned long tempsCourant = millis();
+//     if (DepotCompacteur::Lire<String>("status") == "actif")
+//     {
+//         m_senseur->Ecoutez2();
+//         if (tempsCourant - m_dernierTempsAfficher >= 1000)
+//         {
+//             if (this->m_afficherRecu) 
+//             {
+//                 //Serial.println(this->m_transaction->ObtiensRecu());
+//                 m_digits->AffichezFloat(this->m_transaction->ObtiensRecu());
+//             } 
+//             else 
+//             {
+//                 //this->m_disgits2->showNumberDec(m_transaction->ObtiensCanettes());
+//                 //Serial.println(this->m_transaction->ObtiensCanettes());
+//                 m_digits->afficherDecimal(this->m_transaction->ObtiensCanettes());
+//             }
+//             m_afficherRecu = !m_afficherRecu;
+//             m_dernierTempsAfficher = millis();
+//         }
+//     }
+//     // if (tempsCourant - m_dernierTempsAfficher >= 1000)
+//     // {
+//     //     m_lcd->effacer().afficher(DepotCompacteur::Lire<String>("status"));
+//     //     m_digits->afficher(0, 0, 0, 0);
+//     //     m_dernierTempsAfficher = millis();
+//     // }
+// }
 
 
 String GererCompacteur::ObtiensCanettes() const

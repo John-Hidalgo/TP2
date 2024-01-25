@@ -15,5 +15,4 @@ public:
     {
         m_compacteur->TerminezTransaction();
     };
-
 };
