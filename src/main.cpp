@@ -11,7 +11,7 @@
 // const char *password = "9c6aa39c12";
 const char *ssid = "tp2compacteur";
 const char *password = "0123456789";
-const char *url = "http://192.168.1.17";
+const char *url = "http://192.168.4.17";
 const int sclPin = 18; 
 const int sdaPin = 19; 
 const int echoPin = 25;
@@ -31,7 +31,6 @@ Action<const unsigned int&>* actionTraitezCanettes;
 Action<>* actionInitialiserCanettes;
 Action<>* actionTerminezTransaction;
 
-
 void setup()
 {
   Serial.begin(115200);
@@ -39,8 +38,8 @@ void setup()
   boutonOperateur = new Bouton(boutonOperPin,nullptr);
   boutonClient = new Bouton(boutonClientPin,nullptr);
   lcd = new LCD1602(new LCD1602ProxyI2C());
-  digits = new Affichage4Digits(new Affichage4DigitsProxy(18,19));
-  sens = new SenseurDistance(25,26);
+  digits = new Affichage4Digits(new Affichage4DigitsProxy(sclPin,sdaPin));
+  sens = new SenseurDistance(echoPin,triggerPin);
   transaction = new Transaction();
   compacteur = new GererCompacteur(boutonClient,boutonOperateur,digits,lcd,sens,transaction);
   serv = new ServeurCompacteur(compacteur,ssid,password,url);

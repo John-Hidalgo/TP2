@@ -8,8 +8,8 @@ private:
   NewPing* m_sonar;
   Action<const unsigned int&>* m_action;
   unsigned long m_tempsDebut;
-  unsigned long m_Interval = 3000;
-  unsigned long m_SecondActionInterval = 1500;
+  const unsigned long m_Interval = 3000;
+  const unsigned long m_SecondActionInterval = 1500;
   int m_maxDistance = 100;
   bool m_secondActionStarted = false;
 public:
