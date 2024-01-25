@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/styleIndex.css">
+    <title>Canettes</title>
+</head>
+<body>
+    <h1>Statistiques du canettes</h1>
+
+    <h3>Montant des Canettes compacte: <span id="montantCanettes"> <p></p> </span> </h3> 
+
+    <button onclick="ReinitialiserCanettes()">Reinitialiser les Montants de canettes</button>
+    <button onclick="Acceuil()">Retournez</button>
+
+    <script>
+        function ReinitialiserCanettes()
+        {
+            fetch('/InitialisezCanettes', 
+            {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    totalCanettesRecu: 0
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                let canettesSpan = document.getElementById("montantCanettes");
+                canettesSpan.innerHTML = data;
+                console.log('PUT request successful:', data);
+            })
+            .catch(error => {
+                console.error('Error during PUT request:', error);
+            }); 
+        }
+        function Acceuil()
+        {
+            window.location.href = "http://192.168.1.17/";
+        }
+    </script>
+ 
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/styleIndex.css">
+    <title>Adresse D'emplacement</title>
+</head>
+<body>
+    <h1>Adresse D'emplacement</h1>
+
+    <h3>Adresse courant: <span id="adresse"> <p></p> </span></h3>
+
+    <label for="adresseNouvelle">Entrez Votre nouvelle Adresse:</label>
+    <input type="text" id="adresseNouvelle" placeholder="">
+
+    <button onclick="ModifiezAdresse()">Sauvegarder</button>
+    <button onclick="Acceuil()">Retournez</button>
+
+    <script>
+        function ModifiezAdresse() 
+        {
+            const adresseInput = document.getElementById('adresseNouvelle');
+            const nouvelleAdresse = adresseInput.value;
+            console.log('New Address:', nouvelleAdresse);
+            fetch('/ModifiezAdresse', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ address: nouvelleAdresse }),
+            })
+            .then(response => {
+                if (!response.ok) 
+                {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                let adresseSpan = document.getElementById("adresse");
+                adresseSpan.innerHTML = data;
+                console.log('Data received:', data);
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+        }
+        function Acceuil()
+        {
+            window.location.href = "http://192.168.1.17/";
+        }
+    </script>
+</body>
+</html>
+
+<!-- <script src="js/configureMatch.js"></script> -->

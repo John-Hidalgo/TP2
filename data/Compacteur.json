@@ -1,0 +1,11 @@
+{
+  "numeroUnique": 0,
+  "etat":["En operation","canette non reconnue et rejetee","SVP,tirer pas la canette dans le compacteur","Impression du recu de caisse"],
+  "adresseEmplacement": "placement de toute beaute",
+  "totalCanettesRecu": 10,
+  "totalRecuParClients": 0.00,
+  "status":"repos",
+  "dernierTransaction": 0
+}
+  
+  
