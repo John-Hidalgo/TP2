@@ -13,12 +13,14 @@ class GererCompacteur
     Bouton* m_boutonClients;
     Bouton* m_boutonOperateur;
     Affichage4Digits* m_digits;
+    TM1637Display * m_disgits2;
     LCD1602* m_lcd;
     SenseurDistance* m_senseur;
     Transaction* m_transaction;
     unsigned long m_dernierTempsAfficher = 0;
     unsigned long m_dernierAffichage = 0;
     bool afficherDeuxiemeMessage = true;
+    bool m_afficherRecu = true;
 
     public:
     GererCompacteur(Bouton* p_boutClients,Bouton* p_clientOperateur,Affichage4Digits* p_digits,LCD1602* p_lcd,SenseurDistance* p_senseur,Transaction* p_transaction);

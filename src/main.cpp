@@ -2,7 +2,7 @@
 #include "SenseurDistance.h"
 #include "ServeurCompacteur.h"
 #include "ActionTraiterCanettes.h"
-#include "ActionInitialiserCanettes.h"
+#include "ActionEtatCompacteur.h"
 #include "ActionTerminezTransaction.h"
 #include "LCD1602.h"
 #include "Affichage4Digits.h"
@@ -20,15 +20,13 @@ const int boutonOperPin = 17;
 const int boutonClientPin = 16;
 
 ServeurCompacteur* serv;
-SenseurDistance* sens;
-
 Bouton* boutonClient;
 Bouton* boutonOperateur;
 Affichage4Digits* digits;
 LCD1602* lcd;
+SenseurDistance* sens;
 Transaction* transaction;
 GererCompacteur* compacteur;
-
 Action<const unsigned int&>* actionTraitezCanettes;
 Action<>* actionInitialiserCanettes;
 Action<>* actionTerminezTransaction;
@@ -47,7 +45,7 @@ void setup()
   compacteur = new GererCompacteur(boutonClient,boutonOperateur,digits,lcd,sens,transaction);
   serv = new ServeurCompacteur(compacteur,ssid,password,url);
   actionTraitezCanettes = new ActionTraiterCanettes(compacteur);
-  actionInitialiserCanettes = new ActionInitialiserCanettes(compacteur);
+  actionInitialiserCanettes = new ActionEtatCompacteur(compacteur);
   actionTerminezTransaction = new ActionTerminezTransaction(compacteur);
   sens->AffectezAction(actionTraitezCanettes);
   boutonOperateur->AffectezAction(actionInitialiserCanettes);
@@ -56,7 +54,7 @@ void setup()
 
 void loop()
 {
-  serv->Ecoutes();
+  //serv->Ecoutes();
   compacteur->Geres();
 }
 

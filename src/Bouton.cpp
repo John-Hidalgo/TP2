@@ -14,8 +14,15 @@ bool Bouton::DebounceAppuyee(int etatLu)
 
 void Bouton::Ecoutes() 
 {
+    // int etatLu = digitalRead(m_buttonPin);
+    // DebounceAppuyee(etatLu) ? m_action->Executez() : void();
+    // m_dernierEtat = etatLu;
+    //Serial.println("button is listening");
     int etatLu = digitalRead(m_buttonPin);
-    DebounceAppuyee(etatLu) ? m_action->Executez() : void();
+    if(DebounceAppuyee(etatLu))
+    {
+        Serial.println("pressed");
+    } 
     m_dernierEtat = etatLu;
 }
 void Bouton::AffectezAction(Action<>* p_action) 

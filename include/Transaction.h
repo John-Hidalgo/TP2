@@ -15,23 +15,22 @@ public:
         m_montantCanettes++;
         m_montantRecu = m_montantCanettes * 0.1;
     }
-    void AfficherTransaction(Affichage4Digits* p_lcd)
+    void AfficherTransaction(Affichage4Digits* p_digits)
     {
         if (millis() - m_dernierAffichage >= 1000) 
         {
             m_dernierAffichage = millis();
             if (afficherRecu) 
             {
-                p_lcd->AffichezFloat(m_montantRecu);
+                p_digits->AffichezFloat(m_montantRecu);
             } 
             else 
             {
-                p_lcd->afficherDecimal(m_montantCanettes);
+                p_digits->afficherDecimal(m_montantCanettes);
             }
             afficherRecu = !afficherRecu;
         }
     }
-
     void SauveGarderTransaction()
     {
         DepotCompacteur::SauveGarder("dernierTransaction",this->m_montantCanettes);

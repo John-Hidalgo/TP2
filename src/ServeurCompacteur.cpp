@@ -114,7 +114,6 @@ void ServeurCompacteur::GererConsultezCannettes()
         {
             htmlContent += (char)file.read();
         }
-    
         htmlContent.replace("<p></p>", canettes);
         m_webServer->send(200, "text/html", htmlContent);
         file.close();
@@ -138,7 +137,9 @@ void ServeurCompacteur::GererReinitialisezCannettes()
         DeserializationError erreur = deserializeJson(jsonDoc, jsonData);
         if(erreur)
         {
-
+            Serial.println(erreur.c_str());
+            codeReponse = 500;
+            messageReponse = erreur.c_str();
         }
         else
         {
@@ -234,6 +235,8 @@ void ServeurCompacteur::GererModifiezAdresse()
         if(erreur)
         {
             Serial.println(erreur.c_str());
+            codeReponse = 500;
+            messageReponse = erreur.c_str();
         }
         else
         {
@@ -255,4 +258,5 @@ void ServeurCompacteur::GererModifiezAdresse()
 void ServeurCompacteur::Ecoutes()
 {
     m_webServer->handleClient();
+    m_compacteur->Geres();
 }

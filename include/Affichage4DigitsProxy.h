@@ -48,12 +48,10 @@ class Affichage4DigitsProxy //: public Affichage4DigitsProxy
   }
   void AffichezFloat(float p_valeur)
   {
-  int intValue = int(p_valeur * 100);
-
-  // Display the integer value on the 7-segment display
-  //display.showNumberDec(intValue);
-  m_tm1637->showNumberDecEx(intValue, 0b01000000, true);
-  delay(1000);
+    int intValue = int(p_valeur * 100);
+    // Display the integer value on the 7-segment display
+    //display.showNumberDec(intValue);
+    m_tm1637->showNumberDecEx(intValue, 0b01000000, true);
   }
 
  private:

@@ -34,35 +34,37 @@ public:
     }
     void Ecoutez()
     {
+        //Serial.println("sensing");
         unsigned long tempsCourant = millis();
-        if (tempsCourant - m_tempsDebut >= m_Interval)
-        {
-            unsigned int distance = mesurerDistance();
-            if (distance >= 5 && distance <= 30)
-            {
-                Serial.print("Can Accepted : ");
-                Serial.println(distance); 
-                m_action->Executez(0);
-            }
-            else if((distance < 5 || distance > 30) && distance < 80)
-            {
-                Serial.print("Can Rejected: "); 
-                Serial.println(distance); 
-                m_action->Executez(1);
-                m_action->Executez(2);
-            }
-            else
-            {
-                Serial.print("No can Detected: ");
-                Serial.println(distance); 
-                m_action->Executez(3);
-            }
-            m_tempsDebut = tempsCourant;
-        }
+        // if (tempsCourant - m_tempsDebut >= m_Interval)
+        // {
+        //     unsigned int distance = mesurerDistance();
+        //     if (distance >= 5 && distance <= 30)
+        //     {
+        //         // Serial.print("Can Accepted : ");
+        //         // Serial.println(distance); 
+        //         m_action->Executez(0);
+        //     }
+        //     else if((distance < 5 || distance > 30) && distance < 80)
+        //     {
+        //         // Serial.print("Can Rejected: "); 
+        //         // Serial.println(distance); 
+        //         m_action->Executez(1);
+        //         m_action->Executez(2);
+        //     }
+        //     else
+        //     {
+        //         Serial.print("No can Detected: ");
+        //         Serial.println(distance); 
+        //         //m_action->Executez(3);
+        //     }
+        //     m_tempsDebut = tempsCourant;
+        // }
     }
 
     void Ecoutez2() 
     {
+        //Serial.println("sensor is sensing");
         unsigned long tempsCourant = millis();
         if (!m_secondActionStarted && tempsCourant - m_tempsDebut >= m_Interval) 
         {
@@ -82,8 +84,8 @@ public:
             } 
             else 
             {
-                Serial.print("No can Detected: ");
-                Serial.println(distance);
+                // Serial.print("No can Detected: ");
+                // Serial.println(distance);
                 m_action->Executez(3);
             }
             m_tempsDebut = tempsCourant;
@@ -95,6 +97,4 @@ public:
             m_secondActionStarted = false;
         }
     }
-
-
 };
