@@ -10,7 +10,6 @@ public:
   static void SauveGarder(const String& key, const String& value) 
   {
     DynamicJsonDocument doc = LireDocument();
-
     if (doc.containsKey(key)) 
     {
       doc[key] = value;
@@ -38,13 +37,13 @@ public:
   }
 
   template <typename T>
-  static T Lire(const String& key) {
+  static T Lire(const String& key) 
+  {
     DynamicJsonDocument doc = LireDocument();
-
-    if (doc.containsKey(key) && doc[key].is<T>()) {
+    if (doc.containsKey(key) && doc[key].is<T>()) 
+    {
       return doc[key].as<T>();
     }
-
     return T(); 
   }
 
@@ -62,7 +61,8 @@ public:
   }
 
 private:
-  static DynamicJsonDocument LireDocument() {
+  static DynamicJsonDocument LireDocument()
+  {
     File file = LittleFS.open("/Compacteur.json", "r");
     DynamicJsonDocument doc(1024);
 
@@ -84,10 +84,13 @@ private:
   {
     File file = LittleFS.open("/Compacteur.json", "w");
 
-    if (file) {
+    if (file) 
+    {
       serializeJson(doc, file);
       file.close();
-    } else {
+    } 
+    else 
+    {
       Serial.println("Failed to open JSON file for writing");
     }
   }

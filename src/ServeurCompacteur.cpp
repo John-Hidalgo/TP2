@@ -60,7 +60,6 @@ void ServeurCompacteur::RegistrezLesFunctions()
     this->m_webServer->on(Uri("/" + String("InitialisezCanettes")), HTTPMethod::HTTP_PUT, [this]() { this->GererReinitialisezCannettes(); });
     this->m_webServer->on(Uri("/" + String("ModifiezAdresse")), HTTPMethod::HTTP_PUT, [this]() { this->GererModifiezAdresse(); });
 }
-
 void ServeurCompacteur::GererRacine() 
 {
     Serial.println("Handling root request");
@@ -81,7 +80,6 @@ void ServeurCompacteur::GererRacine()
     htmlContent.replace("<p></p>", String(status));
     m_webServer->send(200, "text/html", htmlContent);
 }
-
 void ServeurCompacteur::GererChangerStatusComptacteur() 
 {
     Serial.println("calling PUT");
@@ -99,7 +97,6 @@ void ServeurCompacteur::GererChangerStatusComptacteur()
     }
     this->m_webServer->send(codeReponse, "text/plain", messageReponse);
 }
-
 void ServeurCompacteur::GererConsultezCannettes()
 {
     String canettes = m_compacteur->ObtiensCanettes();
@@ -159,7 +156,6 @@ void ServeurCompacteur::GererReinitialisezCannettes()
     }
     this->m_webServer->send(codeReponse,"text/plain",messageReponse);
 }
-
 void ServeurCompacteur::GererConsultezClientMontantRecu()
 {
     String recu = m_compacteur->ObtiensClientsRecu();
@@ -184,16 +180,6 @@ void ServeurCompacteur::GererConsultezClientMontantRecu()
         this->m_webServer->send(404, "text/plain", "Fichier introuvable");
     }
 }
-
-// void ServeurCompacteur::GererClientMontantRecu()
-// {
-//     File file = LittleFS.open("/Compacteur.json", "r");
-//     if(file)
-//     {
-//         float valeur = DepotCompacteur::Lire<float>("totalRecuParClients");
-//     }
-// }
-
 void ServeurCompacteur::GererConsultezAdresse()
 {
     Serial.println("Traitement de la demande ConsulterModifiezAdresse");
@@ -219,7 +205,6 @@ void ServeurCompacteur::GererConsultezAdresse()
         this->m_webServer->send(404, "text/plain", "Fichier introuvable");
     }
 }
-
 void ServeurCompacteur::GererModifiezAdresse()
 {
     Serial.println("calling modify address on the server");

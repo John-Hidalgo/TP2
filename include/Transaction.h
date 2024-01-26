@@ -20,5 +20,3 @@ public:
     int ObtiensCanettes() const ;
     float ObtiensRecu() const ;
 };
-
-
